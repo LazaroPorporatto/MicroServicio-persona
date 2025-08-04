@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  database:
+    image: postgres:13-alpine
+    container_name: microservicio-persona-db 
+    restart: always
+    environment:
+      POSTGRES_USER: testing
+      POSTGRES_PASSWORD: lazaro
+      POSTGRES_DB: personasyciudades
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+    name: microservicio-persona-db-data

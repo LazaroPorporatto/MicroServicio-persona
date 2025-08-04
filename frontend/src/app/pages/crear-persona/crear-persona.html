@@ -1,0 +1,83 @@
+<!-- RUTA: src/app/pages/crear-persona/crear-persona.html -->
+<!-- --- CÓDIGO LISTO PARA COPIAR Y PEGAR --- -->
+
+<div class="container-fluid vh-100 d-flex flex-column" style="background-color: #F7F3ED;">
+  <div class="row align-items-center py-2 px-4 crear-persona-header">
+    <div class="col-6">
+      <h3 class="m-0 text-white" style="font-weight: 500;">Crear Cuenta</h3>
+    </div>
+    <div class="col-6 text-end">
+      <img src="assets/app-logo-small.png" alt="Logo" class="header-logo">
+    </div>
+  </div>
+
+  <div class="flex-grow-1 d-flex justify-content-center align-items-center">
+    <div class="crear-persona-card p-5">
+      <div class="row mb-4 justify-content-center">
+        <div class="col-12 text-center">
+          <i class="bi bi-person-circle crear-persona-icon"></i>
+        </div>
+      </div>
+
+      <form [formGroup]="formulario" (ngSubmit)="onSubmitCrearPersona()"> 
+        <div class="row g-4 justify-content-center align-items-start">
+          
+          <div class="col-md-5 d-flex flex-column align-items-center">
+            <!-- CAMPO NOMBRE -->
+            <div class="form-group w-100 mb-3">
+              <input type="text" formControlName="nombre" class="form-control form-control-lg crear-persona-input" placeholder="NOMBRE">
+              <!-- Mensaje de error (opcional pero recomendado) -->
+              <div *ngIf="formulario.get('nombre')?.invalid && formulario.get('nombre')?.touched" class="text-danger small mt-1">
+                El nombre es requerido.
+              </div>
+            </div>
+            
+            <!-- CAMPO APELLIDO -->
+            <div class="form-group w-100 mb-3">
+              <input type="text" formControlName="apellido" class="form-control form-control-lg crear-persona-input" placeholder="APELLIDO">
+            </div>
+
+            <!-- CAMPO DNI -->
+            <div class="form-group w-100 mb-3">
+              <input type="text" formControlName="dni" class="form-control form-control-lg crear-persona-input" placeholder="DNI">
+            </div>
+            
+            <!-- CAMPO EMAIL -->
+            <div class="form-group w-100 mb-3">
+              <input type="email" formControlName="email" class="form-control form-control-lg crear-persona-input" placeholder="E-MAIL">
+            </div>
+
+            <!-- CAMPO FECHA DE NACIMIENTO -->
+            <div class="form-group w-100">
+              <input type="date" formControlName="fechaNacimiento" class="form-control form-control-lg crear-persona-input" placeholder="FECHA DE NACIMIENTO">
+            </div>
+          </div>
+
+          <div class="col-md-5 d-flex flex-column justify-content-between align-items-center">
+            <!-- CAMPO CIUDAD ID -->
+            <div class="form-group w-100 mb-3">
+              <input type="number" formControlName="ciudadId" class="form-control form-control-lg crear-persona-input" placeholder="CIUDAD ID">
+            </div>
+            
+            <!-- --- CAMBIO: AÑADIDO CAMPO DE CONTRASEÑA --- -->
+            <div class="form-group w-100 mb-3">
+              <input type="password" formControlName="password" class="form-control form-control-lg crear-persona-input" placeholder="CONTRASEÑA">
+              <div *ngIf="formulario.get('password')?.invalid && formulario.get('password')?.touched" class="text-danger small mt-1">
+                La contraseña debe tener al menos 6 caracteres.
+              </div>
+            </div>
+            
+            <!-- BOTÓN DE CREAR CUENTA -->
+            <div class="w-100 mt-auto text-center">
+              <button type="submit" class="btn btn-lg crear-persona-button" [disabled]="formulario.invalid">
+                CREAR CUENTA
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>

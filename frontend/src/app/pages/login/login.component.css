@@ -1,0 +1,113 @@
+.card {
+  width: 100%;
+  max-width: 400px;
+}
+/* Colores y estilos base */
+:root {
+  --primary-orange: #ff9966;
+  --secondary-pink: #e65287;
+  --light-bg: #fcf8f3;
+  --text-dark: black;
+  --text-muted-light: #d6afaf;
+  --input-text-color: white; /* Color del texto dentro de los inputs */
+}
+
+.login-background {
+  background-color: var(--light-bg);
+}
+
+.login-card {
+  background-color:  #ff9966;
+  border-radius: 15px; /* Bordes más redondeados para la tarjeta */
+}
+
+/* Estilos para el texto "Pedi2s" */
+.logo-text {
+  color: white;
+  font-weight: bold;
+  font-size: 2.5rem; /* Ajusta el tamaño si es necesario */
+  line-height: 1; /* Elimina espacio extra */
+}
+
+/* Estilos para el ícono de perfil y el texto "LOGIN" */
+.profile-icon-circle {
+  width: 80px;
+  height: 80px;
+  background-color: black;
+  border-radius: 50%;
+}
+
+.profile-icon {
+  font-size: 2.5rem; /* Tamaño del ícono */
+}
+
+.login-text {
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem; /* Ajusta el tamaño */
+}
+
+/* Estilos para los campos de input de Usuario y Contraseña */
+.login-input {
+  background-color: var(--primary-orange);
+  border: black 2px solid;
+  color: var(--input-text-color) !important; /* Asegura que el texto sea blanco */
+  font-weight: bold; /* Hacer el texto del placeholder más fuerte si es necesario */
+}
+
+/* Para cambiar el color del placeholder si el navegador lo permite */
+.login-input::placeholder {
+  color: var(--input-text-color) !important; /* Placeholder blanco */
+  opacity: 0.7; /* Ligeramente transparente para contraste */
+  font-weight: bold;
+}
+.login-input:-ms-input-placeholder { /* Para IE 10+ */
+  color: var(--input-text-color) !important;
+  font-weight: bold;
+}
+.login-input::-ms-input-placeholder { /* Para Edge */
+  color: var(--input-text-color) !important;
+  font-weight: bold;
+}
+
+
+/* Estilos para el botón "INICIAR SESION" */
+.login-button {
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  font-weight: bold;
+  border-radius: 30px;
+  padding: 12px 25px;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+
+/* Estilos para los iconos sociales */
+.social-icons .social-icon-link {
+  color: var(--text-muted-light);
+}
+
+.social-icons .social-icon {
+  font-size: 1.5rem; /* Tamaño de los iconos */
+}
+
+.social-icons .separator {
+  color: var(--text-muted-light);
+  font-size: 1.2rem; /* Tamaño del separador */
+}
+
+/* Estilos para el enlace "CREAR USUARIO" */
+.create-user-link {
+  color: var(--text-dark); /* Color negro para el texto */
+  font-weight: bold;
+}
+
+/* Para ajustar el color del texto del input cuando se escribe */
+.login-input:focus {
+  background-color: var(--primary-orange); /* Mantiene el color de fondo */
+  color: var(--input-text-color); /* Mantiene el color del texto */
+  box-shadow: 0 0 0 0.25rem rgba(255, 153, 102, 0.5); /* Sombra al enfocar (opcional, acorde al color) */
+}

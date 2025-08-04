@@ -1,0 +1,69 @@
+<!-- src/app/pages/actualizar-cliente/actualizar-cliente.component.html (Versión Final Conectada) -->
+
+<div *ngIf="!isLoading" class="container-fluid vh-100 d-flex flex-column" style="background-color: #F7F3ED;">
+  <div class="row align-items-center py-2 px-4 crear-persona-header">
+    <div class="col-6">
+      <h3 class="m-0 text-white" style="font-weight: 500;">Actualizar Cliente</h3>
+    </div>
+    <div class="col-6 text-end">
+      <!-- Puedes añadir un logo o botón de salir si lo necesitas -->
+    </div>
+  </div>
+
+  <div class="flex-grow-1 d-flex justify-content-center align-items-center">
+    <div class="crear-persona-card p-5">
+      <div class="text-center mb-4">
+        <i class="bi bi-person-fill crear-persona-central-icon"></i>
+      </div>
+
+      <form (ngSubmit)="onSubmit()">
+        <div class="form-row">
+          <!-- Campo Nombre -->
+          <div class="form-group mb-3">
+            <label for="nombre" class="crear-persona-label">NOMBRE</label>
+            <input type="text" class="form-control" id="nombre" [(ngModel)]="formData.firstName" name="firstName">
+          </div>
+          <!-- Campo Apellido -->
+          <div class="form-group mb-3">
+            <label for="apellido" class="crear-persona-label">APELLIDO</label>
+            <input type="text" class="form-control" id="apellido" [(ngModel)]="formData.lastName" name="lastName">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <!-- Campo Email -->
+          <div class="form-group mb-3">
+            <label for="email" class="crear-persona-label">E-MAIL</label>
+            <input type="email" class="form-control" id="email" [(ngModel)]="formData.email" name="email">
+          </div>
+          <!-- Campo DNI -->
+          <div class="form-group mb-3">
+            <label for="dni" class="crear-persona-label">DNI</label>
+            <input type="text" class="form-control" id="dni" [(ngModel)]="formData.dni" name="dni">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <!-- Campo Fecha de Nacimiento -->
+          <div class="form-group mb-3">
+            <label for="fechaNacimiento" class="crear-persona-label">FECHA DE NACIMIENTO</label>
+            <input type="date" class="form-control" id="fechaNacimiento" [(ngModel)]="formData.birthDate" name="birthDate">
+          </div>
+          <!-- Campo Ciudad ID -->
+          <div class="form-group mb-3">
+            <label for="ciudadId" class="crear-persona-label">CIUDAD ID</label>
+            <input type="number" class="form-control" id="ciudadId" [(ngModel)]="formData.cityId" name="cityId">
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 mt-4">
+          <button type="submit" class="btn btn-lg crear-persona-button">
+            ACTUALIZAR
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isLoading" class="text-center mt-5">Cargando datos del cliente...</div>

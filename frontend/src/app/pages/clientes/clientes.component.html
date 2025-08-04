@@ -1,0 +1,67 @@
+<!-- RUTA: src/app/pages/clientes/clientes.component.html -->
+<!-- --- CÓDIGO FINAL LISTO PARA COPIAR Y PEGAR --- -->
+
+<div class="container-fluid vh-100 d-flex flex-column" style="background-color: #F7F3ED;">
+  <div class="row align-items-center py-2 px-4 clientes-header">
+    <div class="col-6">
+      <h3 class="m-0 text-white" style="font-weight: 500;">CLIENTES</h3>
+    </div>
+    <div class="col-6 text-end d-flex align-items-center justify-content-end">
+      <button class="btn btn-sm btn-light exit-button me-3" (click)="onSalir()">SALIR</button>
+      <i class="bi bi-person-fill header-person-icon"></i>
+    </div>
+  </div>
+
+  <div class="flex-grow-1 d-flex justify-content-center align-items-start pt-5 pb-3">
+    <div class="clientes-table-container p-4">
+
+      <div *ngIf="isLoading" class="text-center">Cargando clientes...</div>
+      <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+      <div *ngIf="!isLoading && !error" class="table-responsive">
+        <table class="table clientes-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>NOMBRE, APELLIDO</th>
+              <th>FECHA DE NACIMIENTO</th>
+              <th>CIUDAD</th>
+              <th>PROVINCIA</th>
+              <th>PAIS</th>
+              <!-- Columna de acciones solo visible si el usuario tiene algún permiso de acción -->
+              <th *ngIf="authService.hasPermission('editar_personas') || authService.hasPermission('eliminar_personas')">
+                ACCIONES
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cliente of clientes">
+              <td>{{ cliente.id }}</td>
+              <td>{{ cliente.firstName }} {{ cliente.lastName }}</td>
+              <td>{{ cliente.birthDate | date: 'dd/MM/yyyy' }}</td>
+              <td>{{ cliente.city?.name }}</td>
+              <td>{{ cliente.city?.province?.name }}</td>
+              <td>{{ cliente.city?.province?.country?.name }}</td>
+              <!-- Celda de acciones solo visible si el usuario tiene algún permiso de acción -->
+              <td *ngIf="authService.hasPermission('editar_personas') || authService.hasPermission('eliminar_personas')" class="actions-cell">
+                
+                <!-- Botón de ELIMINAR solo si tiene el permiso 'eliminar_personas' -->
+                <button *ngIf="authService.hasPermission('eliminar_personas')" 
+                        class="btn clientes-button delete-button" 
+                        (click)="onEliminar(cliente.id)">ELIMINAR</button>
+                
+                <!-- Botón de EDITAR solo si tiene el permiso 'editar_personas' -->
+                <button *ngIf="authService.hasPermission('editar_personas')" 
+                        class="btn clientes-button edit-button" 
+                        (click)="onEditar(cliente.id)">EDITAR</button>
+              </td>
+            </tr>
+            <tr *ngIf="clientes.length === 0">
+              <td colspan="7" class="text-center">No se encontraron clientes.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

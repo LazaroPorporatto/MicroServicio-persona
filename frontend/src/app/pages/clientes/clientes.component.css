@@ -1,0 +1,235 @@
+/* Custom properties for colors (idealmente estas variables deberían estar en src/styles.css o src/styles.scss para ser globales) */
+:root {
+  --primary-orange: #D19451;
+  --dark-orange: #CB7720;
+  --light-orange: #FDCBA8;
+  --background-light: #F7F3ED; /* Color de fondo general */
+  --card-background: #FCF9F5; /* Color del fondo de la tarjeta/contenedor de la tabla */
+  --text-dark: #333333; /* Un gris oscuro para el texto principal */
+  --header-text-color: #FFFFFF; /* Texto blanco para el header */
+  --table-border-color: #A06D3A; /* Un naranja más oscuro para los bordes de la tabla si quieres un contraste */
+  --delete-button-bg: #dc3545; /* Rojo de Bootstrap para peligro */
+  --delete-button-border: #bd2130;
+  --edit-button-bg: #007bff; /* Azul de Bootstrap para información */
+  --edit-button-border: #0056b3;
+}
+
+/* Contenedor principal de la pantalla */
+.container-fluid {
+  background-color: var(--background-light) !important;
+  min-height: 100vh; /* Asegura que el fondo cubra toda la altura */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Styles (similar a Crear Persona y Login) */
+.clientes-header {
+  background: linear-gradient(to right,  #ff9966);
+  border-bottom: 3px solid var(--dark-orange);
+  position: relative; /* Asegura que el z-index funcione */
+  z-index: 1; /* Para que esté por encima de otros elementos si se superponen */
+  width: 100%; /* Asegura que ocupe todo el ancho */
+}
+
+.clientes-header h3 {
+  color: var(--header-text-color);
+  font-weight: bold; /* Más negrita para el texto CLIENTES */
+  font-size: 2.2rem; /* Tamaño de fuente para "CLIENTES" */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  margin: 0; /* Elimina márgenes por defecto */
+}
+
+.header-person-icon {
+  font-size: 40px; /* Tamaño del icono de persona en el header */
+  color: white; /* Color del icono */
+  border-radius: 50%; /* Hace el icono redondeado */
+  border: 2px solid white; /* Borde blanco alrededor del icono */
+  background-color: var(--primary-orange); /* Fondo naranja para el icono */
+  padding: 5px; /* Espacio entre el icono y el borde */
+  display: inline-flex; /* Para centrar contenido si es necesario y aplicar padding */
+  justify-content: center;
+  align-items: center;
+  width: 50px; /* Ancho y alto para que sea un círculo perfecto */
+  height: 50px;
+}
+
+/* Área de Contenido Principal que centra la tabla */
+.flex-grow-1 {
+  display: flex;
+  justify-content: center; /* Centra la tabla horizontalmente */
+  align-items: start; /* Alinea la tabla en la parte superior del espacio disponible */
+  padding-top: 30px; /* Espacio superior para separar del header */
+  padding-bottom: 20px; /* Espacio inferior */
+}
+
+/* Contenedor de la tabla (simula una "tarjeta" para la tabla) */
+.clientes-table-container {
+  background-color: var(--card-background);
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+  width: 95%; /* Ocupa casi todo el ancho disponible */
+  max-width: 1400px; /* Ancho máximo para pantallas grandes */
+  padding: 25px; /* Espacio interno del contenedor */
+  overflow-x: auto; /* Permite desplazamiento horizontal si la tabla es muy ancha */
+}
+
+/* Estilos de la tabla */
+.clientes-table {
+  width: 100%;
+  margin-bottom: 0;
+  border-collapse: separate; /* Permite border-radius en las celdas */
+  border-spacing: 0; /* Elimina espacio entre celdas */
+}
+
+/* Estilos de los encabezados de la tabla (TH) */
+.clientes-table thead th {
+  background-color: var(--light-orange); /* Fondo naranja claro */
+  color: var(--text-dark); /* Texto oscuro */
+  font-weight: bold;
+  text-align: center;
+  border: 1px solid var(--table-border-color); /* Borde naranja más oscuro */
+  padding: 15px 10px; /* Padding más generoso */
+  vertical-align: middle;
+  font-size: 1.05rem; /* Tamaño de fuente ligeramente más grande */
+  text-transform: uppercase; /* MAYÚSCULAS como en la imagen */
+}
+
+/* Bordes redondeados para los encabezados de la tabla */
+.clientes-table thead tr th:first-child {
+  border-top-left-radius: 10px;
+}
+.clientes-table thead tr th:last-child {
+  border-top-right-radius: 10px;
+}
+
+/* Estilos de las celdas de la tabla (TD) */
+.clientes-table tbody td {
+  background-color: white; /* Fondo blanco para las filas de datos */
+  color: var(--text-dark);
+  text-align: center;
+  border: 1px solid var(black); /* Borde naranja más oscuro */
+  padding: 12px 10px; /* Padding para las celdas */
+  vertical-align: middle;
+  font-size: 1rem;
+}
+
+/* Asegurar bordes redondeados en las esquinas inferiores de la tabla */
+.clientes-table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 10px;
+}
+
+.clientes-table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 10px;
+}
+
+/* Estilos para la columna de acciones (botones) */
+.clientes-table .actions-cell {
+  white-space: nowrap; /* Evita que los botones se envuelvan */
+  display: flex; /* Usa flexbox para alinear los botones */
+  justify-content: center; /* Centra los botones horizontalmente */
+  align-items: center;
+  gap: 8px; /* Espacio entre los botones */
+  padding: 8px;
+}
+
+/* Estilos de los botones de la tabla */
+.clientes-button {
+  border-radius: 30px; /* Botones redondeados */
+  padding: 8px 15px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-transform: uppercase; /* Mayúsculas para el texto del botón */
+}
+
+
+.consult-button:hover {
+  background-color: var(- #ff9966) !important;
+  border-color: var(--dark-orange) !important;
+  color: black!important;
+  transform: translateY(-1px);
+}
+
+.delete-button {
+  background-color: var(- #ff9966);
+  border: 1px solid var(--delete-button-border);
+  color:  black;
+}
+
+.delete-button:hover {
+  background-color: var( #ff9966) !important;
+  border-color: var(--delete-button-border) !important;
+  color: white !important;
+  transform: translateY(-1px);
+}
+
+.edit-button {
+  background-color: var( #ff9966);
+  border: 1px solid var(--edit-button-border);
+  color: black;
+}
+
+.edit-button:hover {
+  background-color: var(--edit-button-border) !important;
+  border-color: var(--edit-button-border) !important;
+  color: white !important;
+  transform: translateY(-1px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+  .clientes-table-container {
+    padding: 15px !important;
+    width: 98%;
+  }
+  .clientes-table thead th,
+  .clientes-table tbody td {
+    font-size: 0.85rem; /* Fuente más pequeña en pantallas medianas */
+    padding: 10px 5px;
+  }
+  .clientes-button {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+  .actions-cell {
+    flex-direction: column; /* Apila los botones verticalmente en pantallas más pequeñas */
+    gap: 5px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  /* En pantallas más pequeñas, la tabla se hará desplazable horizontalmente
+     para evitar que se rompa el layout. Se establece un min-width para asegurar
+     que los contenidos no se compriman demasiado. */
+  .table-responsive {
+    overflow-x: auto;
+  }
+  .clientes-table {
+    min-width: 750px; /* Ajusta este valor si los contenidos aún se ven comprimidos */
+  }
+
+  .clientes-header h3 {
+    font-size: 1.8rem;
+  }
+  .header-person-icon {
+    font-size: 35px;
+    width: 45px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .clientes-table-container {
+    padding: 10px;
+  }
+  .clientes-table thead th,
+  .clientes-table tbody td {
+    font-size: 0.75rem;
+    padding: 8px 3px;
+  }
+  .clientes-button {
+    font-size: 0.7rem;
+    padding: 5px 10px;
+  }
+}

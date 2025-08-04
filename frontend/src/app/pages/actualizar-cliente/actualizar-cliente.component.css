@@ -1,0 +1,166 @@
+/* src/app/pages/actualizar-cliente/actualizar-cliente.component.css */
+
+/* Custom properties for colors (deben estar en src/styles.css o src/styles.scss) */
+:root {
+  --primary-orange: #D19451;
+  --dark-orange: #CB7720;
+  --light-orange: #FDCBA8;
+  --background-light: #F7F3ED;
+  --card-background: #FCF9F5;
+  --text-dark: #333333;
+  --header-text-color: #FFFFFF;
+}
+
+.container-fluid {
+  background-color: var(--background-light) !important;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Styles (similar a Clientes y Crear Persona) */
+.crear-persona-header {
+  background: linear-gradient(to right, #ff9966);
+  border-bottom: 3px solid var(--dark-orange);
+  position: relative;
+  z-index: 1;
+}
+
+.crear-persona-header h3 {
+  color: var(--header-text-color);
+  font-weight: bold;
+  font-size: 2.2rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  margin: 0;
+}
+
+.header-app-icon {
+  width: 50px; /* Tamaño del logo o icono de app en el header */
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid white;
+  background-color: var(--primary-orange);
+  padding: 5px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  /* Si es una imagen PNG o SVG, asegúrate que se vea bien en este tamaño */
+}
+
+
+/* Estilos de la tarjeta/card del formulario */
+.crear-persona-card {
+  background-color: #ff9966;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+  width: 90%;
+  max-width: 600px; /* Ancho máximo para el formulario */
+  padding: 40px; /* Espacio interno */
+  text-align: center;
+}
+
+/* Icono de Persona Central */
+.crear-persona-central-icon {
+  font-size: 80px; /* Tamaño grande para el icono central */
+  color: var(--dark-orange);
+  margin-bottom: 20px;
+}
+
+/* Estilos de las etiquetas de los campos */
+.crear-persona-label {
+  display: block; /* Para que la etiqueta esté en su propia línea */
+  text-align: left; /* Alineación del texto a la izquierda */
+  font-weight: bold;
+  color: var(--text-dark);
+  margin-bottom: 5px; /* Espacio entre la etiqueta y el input */
+  font-size: 0.95rem;
+}
+
+/* Estilos de los campos de entrada (inputs) */
+.crear-persona-input {
+  border-radius: 30px; /* Bordes redondeados */
+  border: 2px solid var(--primary-orange); /* Borde naranja */
+  padding: 12px 20px; /* Padding generoso */
+  width: 100%; /* Ocupa todo el ancho disponible */
+  background-color: white; /* Fondo blanco */
+  font-size: 1rem;
+  color: var(--text-dark);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08) inset; /* Sombra interna sutil */
+  transition: all 0.3s ease;
+}
+
+.crear-persona-input:focus {
+  border-color: var(--dark-orange); /* Borde más oscuro al enfocar */
+  box-shadow: 0 0 0 0.25rem rgba(203, 119, 32, 0.25); /* Sombra de enfoque Bootstrap-like */
+  outline: none;
+}
+
+/* Estilos del botón principal del formulario */
+.crear-persona-button {
+  background-color:white;
+  border: 2px black;
+  color: black;
+  font-weight: bold;
+  border-radius: 30px;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  width: 100%; /* Ocupa todo el ancho */
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase; /* Para que el texto sea en mayúsculas */
+}
+
+.crear-persona-button:hover {
+  background-color: var(--dark-orange) !important;
+  border-color: var(--dark-orange) !important;
+  color: white !important;
+  transform: translateY(-2px); /* Efecto de "levantamiento" */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+  .crear-persona-card {
+    width: 95%;
+    padding: 30px;
+  }
+  .crear-persona-header h3 {
+    font-size: 1.8rem;
+  }
+  .header-app-icon {
+    width: 40px;
+    height: 40px;
+  }
+  .crear-persona-central-icon {
+    font-size: 60px;
+  }
+  .crear-persona-button {
+    font-size: 1.1rem;
+    padding: 12px 25px;
+  }
+}
+
+@media (max-width: 576px) {
+  .crear-persona-card {
+    padding: 20px;
+  }
+  .crear-persona-header h3 {
+    font-size: 1.5rem;
+  }
+  .header-app-icon {
+    width: 35px;
+    height: 35px;
+    padding: 3px;
+  }
+  .crear-persona-central-icon {
+    font-size: 50px;
+  }
+  .crear-persona-label, .crear-persona-input {
+    font-size: 0.9rem;
+    padding: 10px 15px;
+  }
+  .crear-persona-button {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+}
