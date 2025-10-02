@@ -1,37 +1,28 @@
-import { IsString, IsNotEmpty, IsNumber, IsDateString, IsOptional, IsEmail, MinLength } from 'class-validator';
+import { IsString, IsNotEmpty, IsEmail, IsDateString, IsNumber } from 'class-validator';
 
+// DTO estricto para el CRUD de Personas.
 export class CreatePersonDto {
-
-  // Campos opcionales para crear una persona
-  @IsOptional()
   @IsString()
-  firstName?: string;
+  @IsNotEmpty({ message: 'El nombre es obligatorio' })
+  firstName: string;
 
-  @IsOptional()
   @IsString()
-  lastName?: string;
+  @IsNotEmpty({ message: 'El apellido es obligatorio' })
+  lastName: string;
 
-  @IsOptional()
   @IsString()
-  dni?: string;
+  @IsNotEmpty({ message: 'El DNI es obligatorio' })
+  dni: string;
 
-  // Campos OBLIGATORIOS para LOGIN y REGISTRO 
-  @IsEmail()
-  @IsNotEmpty()
+  @IsEmail({}, { message: 'El formato del email no es válido' })
+  @IsNotEmpty({ message: 'El email es obligatorio' })
   email: string;
 
-  // El login y el registro necesitan la contraseña.
-  @IsString()
-  @IsNotEmpty()
-  @MinLength(6)
-  password: string;
+  @IsDateString({}, { message: 'La fecha de nacimiento debe tener el formato YYYY-MM-DD' })
+  @IsNotEmpty({ message: 'La fecha de nacimiento es obligatoria' })
+  birthDate: string;
 
-  // Campo opcional para que el LOGIN funcione 
-  @IsOptional()
-  @IsNumber()
-  cityId?: number;
-
-  @IsOptional()
-  @IsDateString()
-  birthDate?: string; 
+  @IsNumber({}, { message: 'El ID de la ciudad debe ser un número' })
+  @IsNotEmpty({ message: 'La ciudad es obligatoria' })
+  cityId: number;
 }
