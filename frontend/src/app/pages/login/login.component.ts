@@ -1,6 +1,3 @@
-// RUTA: src/app/pages/login/login.component.ts
-// --- CÓDIGO FINAL CORREGIDO, LISTO PARA COPIAR Y PEGAR ---
-
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -42,9 +39,8 @@ export class LoginComponent implements OnInit {
 
     try {
       const response = await this.apiService.login(credentials);
-      
-      // --- ¡CORRECCIÓN APLICADA AQUÍ! ---
-      // Buscamos la propiedad 'accessToken' que envía tu backend.
+
+      // Buscamos la propiedad 'accessToken' que envía nuestro backend.
       const token = response.accessToken; 
 
       if (token) {

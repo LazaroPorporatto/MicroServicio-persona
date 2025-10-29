@@ -49,8 +49,6 @@ export class PermissionsGuard implements CanActivate {
         },
       );
 
-      // --- CORRECCIÓN FINAL ---
-      // La respuesta (response.data) ES el array de permisos.
       const userPermissions = response.data;
 
       if (!Array.isArray(userPermissions)) {

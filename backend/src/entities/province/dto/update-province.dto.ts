@@ -1,4 +1,3 @@
-// src/province/dto/update-province.dto.ts
 import { PartialType } from '@nestjs/mapped-types';
 import { CreateProvinceDto } from './create-province.dto';
 

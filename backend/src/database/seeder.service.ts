@@ -1,6 +1,3 @@
-// RUTA: backend/src/database/seeder.service.ts
-// --- CÓDIGO FINAL CORREGIDO, LISTO PARA COPIAR Y PEGAR ---
-
 import { Injectable, OnModuleInit, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -28,27 +25,26 @@ export class SeederService implements OnModuleInit {
     this.logger.log('Proceso de inicialización finalizado.');
   }
 
-  // --- MÉTODO CORREGIDO Y MEJORADO ---
   async fixAdminUser() {
     const adminEmail = 'lazaroporporatto@yahoo.com';
     const adminPassword = 'EnzoPerez24';
 
     this.logger.log(`Verificando y configurando usuario administrador: ${adminEmail}`);
 
-    // 1. Buscamos el rol 'ADMIN'. Es crucial que exista.
+    // Buscamos el rol 'ADMIN'. Es crucial que exista.
     const adminRole = await this.roleRepository.findOne({ where: { code: 'ADMIN' } });
     if (!adminRole) {
       this.logger.error('Rol "ADMIN" no encontrado. No se pudo configurar el usuario administrador. Ejecuta el seeder de roles primero.');
       return;
     }
 
-    // 2. Buscamos al usuario admin, cargando también sus roles actuales.
+    // Buscamos al usuario admin, cargando también sus roles actuales.
     let adminUser = await this.userRepository.findOne({ 
       where: { email: adminEmail },
-      relations: ['roles'] // <-- ¡MUY IMPORTANTE! Cargar la relación de roles.
+      relations: ['roles'] 
     });
 
-    // 3. Si el usuario no existe, lo creamos.
+    // Si el usuario no existe, lo creamos.
     if (!adminUser) {
       this.logger.log(`Usuario admin no encontrado, creando uno nuevo...`);
       const hashedPassword = await bcrypt.hash(adminPassword, 10);
@@ -58,7 +54,7 @@ export class SeederService implements OnModuleInit {
         roles: [adminRole] // Le asignamos el rol de admin desde su creación.
       });
     } else {
-      // 4. Si el usuario ya existe, nos aseguramos de que tenga el rol de admin.
+      // Si el usuario ya existe, nos aseguramos de que tenga el rol de admin.
       this.logger.log(`Usuario admin encontrado. Verificando rol...`);
       
       const hasAdminRole = adminUser.roles.some(role => role.code === 'ADMIN');
@@ -70,7 +66,6 @@ export class SeederService implements OnModuleInit {
         this.logger.log(`El usuario ya tiene el rol de ADMIN.`);
       }
       
-      // Opcional: También puedes verificar y resetear la contraseña si quieres
       const isPasswordCorrect = await bcrypt.compare(adminPassword, adminUser.password ?? '');
       if (!isPasswordCorrect) {
         this.logger.log('La contraseña del admin es incorrecta. Actualizando...');
@@ -79,12 +74,11 @@ export class SeederService implements OnModuleInit {
       }
     }
 
-    // 5. Guardamos todos los cambios en el usuario (sea nuevo o actualizado).
+    // Guardamos todos los cambios en el usuario (sea nuevo o actualizado).
     await this.userRepository.save(adminUser);
     this.logger.log(`Usuario ${adminEmail} configurado correctamente como ADMIN.`);
   }
 
-  // Tu método seedPermissionsAndRoles se queda igual, está correcto.
   async seedPermissionsAndRoles() {
     this.logger.log('Iniciando el seeder de permisos y roles...');
     

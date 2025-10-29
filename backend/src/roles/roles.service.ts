@@ -1,6 +1,3 @@
-// RUTA: src/roles/roles.service.ts
-// --- CÓDIGO FINAL LISTO PARA COPIAR Y PEGAR ---
-
 import {
   NotFoundException,
   BadRequestException,
@@ -64,7 +61,6 @@ export class RolesService {
     if (roleDto.code !== undefined) {
       roleAActualizar.code = roleDto.code;
     }
-    // --- CAMBIO: Se reemplaza 'descripcion' por 'name' ---
     if (roleDto.name !== undefined) {
       roleAActualizar.name = roleDto.name;
     }

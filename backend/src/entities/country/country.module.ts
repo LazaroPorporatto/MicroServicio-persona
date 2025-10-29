@@ -1,5 +1,3 @@
-// RUTA: src/entities/country/country.module.ts
-
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Country } from './country.entity';

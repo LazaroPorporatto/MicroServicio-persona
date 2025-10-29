@@ -1,5 +1,3 @@
-// src/interfaces/register.dto.ts (Versión Ampliada para Registro Completo)
-
 import { 
   IsEmail, 
   IsString, 
@@ -12,7 +10,7 @@ import {
 
 export class RegisterDTO {
   
-  // --- Datos para la cuenta de USUARIO ---
+  // Datos para la cuenta de USUARIO
   @IsEmail({}, { message: 'El email debe ser una dirección de correo válida.' })
   @IsNotEmpty({ message: 'El email no puede estar vacío.' })
   email: string;
@@ -22,7 +20,7 @@ export class RegisterDTO {
   @IsNotEmpty({ message: 'La contraseña no puede estar vacía.' })
   password: string;
 
-  // --- Datos para el perfil de PERSONA ---
+  // Datos para el perfil de PERSONA 
   @IsString()
   @IsNotEmpty({ message: 'El nombre no puede estar vacío.' })
   firstName: string;

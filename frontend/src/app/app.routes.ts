@@ -1,5 +1,3 @@
-// src/app/app.routes.ts
-
 import { Routes } from '@angular/router';
 import { TemplateComponent } from './pages/template/template.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -9,19 +7,19 @@ import { ClientesComponent } from './pages/clientes/clientes';
 import { ActualizarClienteComponent } from './pages/actualizar-cliente/actualizar-cliente'; // <-- NUEVA IMPORTACIÓN
 
 export const routes: Routes = [
-  // 1. Ruta para el Login
+  // Ruta para el Login
   { path: 'login', component: LoginComponent },
 
-  // 2. Ruta por defecto para el inicio de la aplicación, redirigiendo a 'login'
+  // Ruta por defecto para el inicio de la aplicación, redirigiendo a 'login'
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 
-  // 3. Ruta para Crear Persona
+  // Ruta para Crear Persona
   { path: 'crear-persona', component: CrearPersonaComponent },
 
-  // 4. NUEVA RUTA para Clientes
+  // NUEVA RUTA para Clientes
   { path: 'clientes', component: ClientesComponent },
 
-  // 5. NUEVA RUTA para Actualizar Cliente, con un parámetro de ID
+  // NUEVA RUTA para Actualizar Cliente, con un parámetro de ID
   { path: 'actualizar-cliente/:id', component: ActualizarClienteComponent },
 
   {
@@ -30,10 +28,10 @@ export const routes: Routes = [
     children: [
       { path: 'home', component: HomeComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
-      // Aquí puedes añadir más rutas que usen el layout del TemplateComponent si es necesario
+      // aca se dejo por si hay q añadir más rutas que usen el layout del TemplateComponent si es necesario
     ],
   },
 
-  // 6. Ruta comodín para cualquier otra URL no definida, redirige a 'login'
+  // Ruta comodín para cualquier otra URL no definida, redirige a 'login'
   { path: '**', redirectTo: 'login' },
 ];

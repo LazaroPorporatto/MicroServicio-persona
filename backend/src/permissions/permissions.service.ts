@@ -1,6 +1,3 @@
-// RUTA: src/permissions/permissions.service.ts
-// --- CÓDIGO FINAL LISTO PARA COPIAR Y PEGAR ---
-
 import {
   Injectable,
   NotFoundException,
@@ -57,7 +54,6 @@ export class PermissionsService {
       throw new NotFoundException('No se encontró ningún permiso con el ID ingresado');
     }
 
-    // --- CAMBIO: Eliminada la lógica que usaba 'description' ---
     if (permissionDto.name !== undefined) {
       permissionAActualizar.name = permissionDto.name;
     }

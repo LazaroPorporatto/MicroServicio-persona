@@ -1,6 +1,3 @@
-// RUTA: src/app/services/auth.service.ts
-// --- CÓDIGO FINAL LISTO PARA COPIAR Y PEGAR ---
-
 import { Injectable } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
 

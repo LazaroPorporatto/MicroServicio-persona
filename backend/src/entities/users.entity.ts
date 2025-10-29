@@ -1,6 +1,3 @@
-// RUTA: src/entities/users.entity.ts
-// --- CÓDIGO CORREGIDO, LISTO PARA COPIAR Y PEGAR ---
-
 import {
   BaseEntity,
   Column,
@@ -12,7 +9,6 @@ import {
 } from 'typeorm';
 import { Person } from './persons/person.entity';
 import { RoleEntity } from './roles.entity';
-// No necesitamos PermissionEntity aquí
 
 @Entity({ name: 'users' })
 export class UserEntity extends BaseEntity {
@@ -36,16 +32,4 @@ export class UserEntity extends BaseEntity {
   })
   roles: RoleEntity[];
 
-  // --- CAMBIO: ELIMINADA LA RELACIÓN DIRECTA CON PERMISOS ---
-  // Esta relación ya no existe, ya que los permisos se obtienen a través de los roles.
-  // @ManyToMany(
-  //   () => PermissionEntity,
-  //   (permission) => permission.users, // Esto causaba el error
-  // )
-  // @JoinTable({
-  //   name: 'users_permissions',
-  //   joinColumn: { name: 'user_id', referencedColumnName: 'id' },
-  //   inverseJoinColumn: { name: 'permission_id', referencedColumnName: 'id' },
-  // })
-  // permissions: PermissionEntity[];
 }

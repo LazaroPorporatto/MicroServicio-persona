@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
-import { config } from '../config/env'; 
+import { config } from '../config/env';
 
-// Esto asegura que todas las peticiones apunten a nuestro backend por defecto.
 axios.defaults.baseURL = config.urls.base;
 
-// INTERFACES 
 export interface CreatePersonData {
   firstName: string;
   lastName: string;
@@ -16,13 +14,15 @@ export interface CreatePersonData {
   birthDate?: string;
 }
 export interface UpdatePersonData extends Partial<CreatePersonData> {}
-export interface LoginCredentials { email: string; password: string; }
+export interface LoginCredentials {
+  email: string;
+  password: string;
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-
   constructor() {}
 
   private getAuthHeaders() {
@@ -31,29 +31,41 @@ export class ApiService {
       return {
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       };
     }
     return { headers: { 'Content-Type': 'application/json' } };
   }
-  
-  // MÉTODOS DE API 
 
-  async getAllPersons(): Promise<any[]> {
-    return (await axios.get(config.urls.persons, this.getAuthHeaders())).data;
+
+  async getAllPersons(page: number, itemsPerPage: number): Promise<any> { 
+    const options = {
+      ...this.getAuthHeaders(),
+      // Añadimos los 'params' para que axios los ponga en la URL
+      params: {
+        page: page,
+        itemsPerPage: itemsPerPage, 
+      },
+    };
+    // La petición ahora será: /persons?page=1&itemsPerPage=5
+    const response = await axios.get(config.urls.persons, options);
+    return response.data;
   }
 
   async getPersonById(id: number): Promise<any> {
-    return (await axios.get(`${config.urls.persons}/${id}`, this.getAuthHeaders())).data;
+    const response = await axios.get(`${config.urls.persons}/${id}`, this.getAuthHeaders());
+    return response.data;
   }
 
   async createNewPerson(data: CreatePersonData): Promise<any> {
-    return (await axios.post(config.urls.persons, data, this.getAuthHeaders())).data;
+    const response = await axios.post(config.urls.persons, data, this.getAuthHeaders());
+    return response.data;
   }
 
   async updatePerson(id: number, data: UpdatePersonData): Promise<any> {
-    return (await axios.patch(`${config.urls.persons}/${id}`, data, this.getAuthHeaders())).data;
+    const response = await axios.patch(`${config.urls.persons}/${id}`, data, this.getAuthHeaders());
+    return response.data;
   }
 
   async deletePerson(id: number): Promise<void> {
@@ -61,25 +73,27 @@ export class ApiService {
   }
 
   async register(data: CreatePersonData): Promise<any> {
-    return (await axios.post(config.urls.register, data)).data;
+    const response = await axios.post(config.urls.register, data);
+    return response.data;
   }
 
   async login(credentials: LoginCredentials): Promise<any> {
     try {
       const response = await axios.post(config.urls.login, credentials);
-      // NestJS devuelve 'access_token' (con guion bajo).
-      const token = response.data.access_token; 
+      // El backend devuelve 'accessToken'.
+      const token = response.data.accessToken; 
       if (token) {
         localStorage.setItem('authToken', token);
       }
-      return response.data; // Devolvemos toda la respuesta para que el componente la use
+      return response.data;
     } catch (error) {
       localStorage.removeItem('authToken');
       throw error;
     }
   }
-  
+
   async getData(): Promise<any> {
-    return (await axios.get(config.urls.getFood)).data;
+    const response = await axios.get(config.urls.getFood);
+    return response.data;
   }
 }

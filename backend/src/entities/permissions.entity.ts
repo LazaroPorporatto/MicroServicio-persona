@@ -15,10 +15,6 @@ export class PermissionEntity extends BaseEntity {
   @Column({ unique: true }) // El nombre del permiso debe ser único
   name: string;
 
-  // description eliminada (puedes descomentar si la necesitas)
-  // @Column()
-  // description: string;
-
   // Relación con roles
   @ManyToMany(() => RoleEntity, (role) => role.permissions)
   roles: RoleEntity[];

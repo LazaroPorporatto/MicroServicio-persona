@@ -1,0 +1,66 @@
+import { Test, TestingModule } from '@nestjs/testing';
+import { INestApplication, ValidationPipe } from '@nestjs/common';
+import * as request from 'supertest';
+import { AppModule } from './../src/app.module'; // Importamos el módulo principal de la app
+
+describe('PersonsController (e2e)', () => {
+  let app: INestApplication;
+
+  beforeAll(async () => {
+    // Se crea una instancia de la aplicación para el entorno de prueba
+    const moduleFixture: TestingModule = await Test.createTestingModule({
+      imports: [AppModule],
+    }).compile();
+
+    app = moduleFixture.createNestApplication();
+    // Se aplican los mismos 'pipes' de validación que en producción
+    app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
+    await app.init();
+  });
+
+  // Prueba para el caso INT-01: Creación Exitosa de Persona
+  it('POST /persons -> should create a new person successfully', () => {
+    return request(app.getHttpServer())
+      .post('/persons')
+      .send({
+        nombre: 'Lazaro',
+        apellido: 'Test',
+        dni: '12345678',
+        email: 'lazaro.test@example.com',
+        fechaNacimiento: '1998-05-20',
+        ciudadId: 1, // Asumiendo que el ID 1 existe en la BBDD de prueba
+        password: 'password123',
+      })
+      .expect(201) // Esperamos un código de estado 201 Created
+      .then((response) => {
+        // Verificamos que la respuesta contenga las propiedades esperadas
+        expect(response.body).toHaveProperty('id');
+        expect(response.body.nombre).toEqual('Lazaro');
+        expect(response.body.email).toEqual('lazaro.test@example.com');
+        // La contraseña nunca debe ser devuelta en la respuesta
+        expect(response.body).not.toHaveProperty('password');
+      });
+  });
+
+  // Prueba para el caso INT-02: Fallo en creación por datos inválidos
+  it('POST /persons -> should fail with invalid email', () => {
+    return request(app.getHttpServer())
+      .post('/persons')
+      .send({
+        nombre: 'Felipe',
+        apellido: 'Test',
+        dni: '87654321',
+        email: 'email-invalido', // Email sin formato correcto
+        fechaNacimiento: '2000-01-01',
+        ciudadId: 1,
+        password: 'password123',
+      })
+      .expect(400); // Esperamos un código de estado 400 Bad Request
+  });
+  
+  // Agrega aquí más pruebas (GET, PATCH, DELETE, Auth, etc.)
+
+  afterAll(async () => {
+    await app.close(); // Se cierra la aplicación al finalizar las pruebas
+  });
+});

@@ -1,6 +1,3 @@
-// RUTA: src/auth/dto/register-auth.dto.ts
-// --- CÓDIGO NUEVO, LISTO PARA COPIAR Y PEGAR ---
-
 import { IsString, IsNotEmpty, IsNumber, IsDateString, IsOptional, IsEmail, MinLength } from 'class-validator';
 
 export class RegisterAuthDto {

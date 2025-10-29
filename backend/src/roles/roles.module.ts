@@ -1,14 +1,13 @@
-// src/roles/roles.module.ts
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm'; // <-- Asegúrate de tener esto
+import { TypeOrmModule } from '@nestjs/typeorm'; 
 import { RolesService } from './roles.service';
 import { RolesController } from './roles.controller';
-import { RoleEntity } from 'src/entities/roles.entity'; // <-- Importa correctamente
+import { RoleEntity } from 'src/entities/roles.entity'; 
 import { PermissionEntity } from 'src/entities/permissions.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([RoleEntity, PermissionEntity]) // <-- ¡AQUÍ ESTÁ LA CLAVE!
+    TypeOrmModule.forFeature([RoleEntity, PermissionEntity]) 
   ],
   controllers: [RolesController],
   providers: [RolesService],

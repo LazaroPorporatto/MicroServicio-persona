@@ -1,4 +1,3 @@
-// src/city/dto/update-city.dto.ts
 import { PartialType } from '@nestjs/mapped-types';
 import { CreateCityDto } from './create-city.dto';
 
